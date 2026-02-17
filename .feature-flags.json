@@ -1,0 +1,139 @@
+{
+  "flags": [
+    {
+      "name": "PW_CHROMIUM_ATTACH_TO_OTHER",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/chromium/crBrowser.ts:181"
+      ],
+      "last_modified": "2022-06-15",
+      "suggested_action": "Remove flag check, default to not treating 'other' target types as pages",
+      "evidence": "Environment variable checked once in _onAttachedToTarget; last modified over 3.5 years ago (2022-06-15). Only used in a single location."
+    },
+    {
+      "name": "PLAYWRIGHT_DISABLE_FORCED_CHROMIUM_PROXIED_LOOPBACK",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": [
+        "packages/playwright-core/src/server/chromium/crBrowser.ts:115",
+        "packages/playwright-core/src/server/chromium/chromium.ts:354",
+        "packages/playwright-core/src/server/bidi/bidiChromium.ts:150",
+        "packages/playwright-core/src/server/android/android.ts:304"
+      ],
+      "last_modified": "2024-09-05",
+      "suggested_action": "Remove flag, keep default behavior (forced loopback proxy bypass enabled)",
+      "evidence": "Environment variable used in 4 files to optionally disable forced <-loopback> in proxy bypass rules. Last modified over 17 months ago (2024-09-05). The default behavior has been stable since introduction."
+    },
+    {
+      "name": "PW_DISABLE_TS_ESM",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/common/esmLoaderHost.ts:27"
+      ],
+      "last_modified": "2025-04-25",
+      "suggested_action": "Remove opt-out switch; TypeScript ESM loader is stable",
+      "evidence": "Opt-out environment variable for TS ESM loader registration. Used in a single file. Last modified ~10 months ago (2025-04-25). ESM loading has been stable, making this escape hatch unnecessary."
+    },
+    {
+      "name": "SELENIUM_REMOTE_CAPABILITIES",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": [
+        "packages/playwright-core/src/server/chromium/chromium.ts:205"
+      ],
+      "last_modified": "2023-06-08",
+      "suggested_action": "Deprecate with notice before removal; may still be used by Selenium Grid users",
+      "evidence": "Environment variable for passing extra Selenium remote capabilities. Last modified almost 3 years ago (2023-06-08). Used only in _launchWithSeleniumHub."
+    },
+    {
+      "name": "SELENIUM_REMOTE_HEADERS",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": [
+        "packages/playwright-core/src/server/chromium/chromium.ts:212"
+      ],
+      "last_modified": "2023-06-08",
+      "suggested_action": "Deprecate with notice before removal; may still be used by Selenium Grid users",
+      "evidence": "Environment variable for passing extra Selenium remote headers. Last modified almost 3 years ago (2023-06-08). Used only in _launchWithSeleniumHub."
+    },
+    {
+      "name": "PLAYWRIGHT_NO_COPY_PROMPT",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/index.ts:724"
+      ],
+      "last_modified": "2025-05-28",
+      "suggested_action": "Remove flag check, keep default copy prompt behavior",
+      "evidence": "Environment variable to suppress copy prompt. Single usage in index.ts. Last modified ~9 months ago (2025-05-28)."
+    },
+    {
+      "name": "WK_DISABLE_FRAME_SESSIONS",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/webkit/wkPage.ts:50",
+        "packages/playwright-core/src/server/webkit/wkPage.ts:172",
+        "packages/playwright-core/src/server/webkit/wkPage.ts:314"
+      ],
+      "last_modified": "2026-01-14",
+      "suggested_action": "Keep; recently modified and controls WebKit frame sessions for versions 2245-2255",
+      "evidence": "Controls enableFrameSessions for specific WebKit version range (2245-2255). Recently modified (2026-01-14). Active feature gate for ongoing WebKit work."
+    },
+    {
+      "name": "PLAYWRIGHT_DISABLE_SERVICE_WORKER_NETWORK",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/chromium/crServiceWorker.ts:36"
+      ],
+      "last_modified": "2025-12-22",
+      "suggested_action": "Keep; recently modified and controls service worker network interception",
+      "evidence": "Controls whether CRNetworkManager is created for service workers. Recently modified (2025-12-22)."
+    },
+    {
+      "name": "PLAYWRIGHT_DISABLE_SERVICE_WORKER_CONSOLE",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/chromium/crServiceWorker.ts:55"
+      ],
+      "last_modified": "2025-12-03",
+      "suggested_action": "Keep; recently modified and controls service worker console message capture",
+      "evidence": "Controls whether console messages from service workers are forwarded to BrowserContext. Recently modified (2025-12-03)."
+    },
+    {
+      "name": "PW_TEST_DEBUG_REPORTERS",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/reporters/line.ts:50",
+        "packages/playwright/src/reporters/dot.ts:71",
+        "packages/playwright/src/reporters/list.ts:171"
+      ],
+      "last_modified": "2026-01-22",
+      "suggested_action": "Keep; recently modified internal debug flag used across multiple reporters",
+      "evidence": "Internal test debug flag controlling reporter output behavior. Used 11 times across 3 reporter files. Recently modified (2026-01-22)."
+    }
+  ],
+  "summary": {
+    "total_flags": 10,
+    "removal_candidates": 6,
+    "breakdown": {
+      "STALE": 6,
+      "ACTIVE": 4
+    }
+  }
+}
