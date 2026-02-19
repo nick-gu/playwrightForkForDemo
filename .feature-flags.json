@@ -127,7 +127,8 @@
         "packages/playwright-core/src/cli/program.ts:47",
         "packages/playwright-core/src/cli/driver.ts:45",
         "packages/playwright-core/src/inProcessFactory.ts:27",
-        "packages/playwright-core/src/cli/program.ts:702"
+        "packages/playwright-core/src/cli/program.ts:702",
+        "packages/playwright-core/src/server/utils/userAgent.ts:69"
       ],
       "last_modified": "2024-01-29",
       "suggested_action": "Keep as-is; core to multi-language SDK support (Python, Java, .NET bindings)",
@@ -143,7 +144,7 @@
         "packages/playwright/src/program.ts:338",
         "packages/playwright-core/src/server/browserType.ts:296"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; core debugging mechanism documented in Playwright docs",
       "evidence": "Core debug mode flag (console/inspector). Widely used across codebase via debugMode() helper. Documented user-facing feature."
     },
@@ -157,7 +158,7 @@
         "packages/injected/src/injectedScript.ts:131",
         "packages/playwright-core/src/server/trace/viewer/traceViewer.ts:132"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2023-03-12",
       "suggested_action": "Keep as-is; core test infrastructure used in dozens of locations via isUnderTest()",
       "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper to adjust behavior during Playwright's own tests."
     },
@@ -220,9 +221,9 @@
       "reason": "STALE",
       "risk_level": "LOW",
       "files": ["packages/playwright-core/src/cli/program.ts:218"],
-      "last_modified": "2025-09-09",
+      "last_modified": "2023-08-24",
       "suggested_action": "Remove flag; either always GC or make it a proper CLI option",
-      "evidence": "Skips browser garbage collection. Single usage. Not modified since 2025-09-09 (5 months)."
+      "evidence": "Skips browser garbage collection. Single usage. Flag-specific code not modified since 2023-08-24 (2.5 years)."
     },
     {
       "name": "PLAYWRIGHT_LEGACY_SCREENSHOT",
@@ -283,10 +284,13 @@
       "removal_candidate": false,
       "reason": "ACTIVE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:46"],
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:46",
+        "packages/playwright-core/src/server/registry/dependencies.ts:31"
+      ],
       "last_modified": "2026-01-20",
       "suggested_action": "Keep as-is; actively used for CLI version display override",
-      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Single usage."
+      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Used in program.ts and dependencies.ts."
     },
     {
       "name": "PWDEBUGIMPL",
@@ -296,26 +300,95 @@
       "files": [
         "packages/playwright/src/util.ts:37",
         "packages/playwright-core/src/server/utils/nodePlatform.ts:73",
-        "packages/playwright-core/src/cli/program.ts:694"
+        "packages/playwright-core/src/cli/program.ts:694",
+        "packages/playwright/src/reporters/base.ts:616",
+        "packages/playwright/src/cli/daemon/daemon.ts:122",
+        "packages/playwright/src/cli/daemon/program.ts:54"
       ],
       "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; actively used implementation debug flag",
-      "evidence": "Shows internal stack frames and detailed error info for Playwright developers. Recently modified 2026-02-12."
+      "evidence": "Shows internal stack frames and detailed error info for Playwright developers. Recently modified 2026-02-12. Used in 6+ locations."
+    },
+    {
+      "name": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/utils/hostPlatform.ts:41",
+        "packages/playwright-core/src/server/utils/hostPlatform.ts:43"
+      ],
+      "last_modified": "2024-11-04",
+      "suggested_action": "Remove env override; use proper test mocking or dependency injection for host platform",
+      "evidence": "Test-only override for host platform detection. 2 references in hostPlatform.ts. Not modified since 2024-11-04 (15 months)."
+    },
+    {
+      "name": "PLAYWRIGHT_PROXY_BYPASS_FOR_TESTING",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": ["packages/playwright-core/src/server/bidi/bidiBrowser.ts:555"],
+      "last_modified": "2025-08-18",
+      "suggested_action": "Remove test-only proxy bypass env var; use proper test fixtures or mocking instead",
+      "evidence": "Single usage, provides fallback proxy bypass for testing. Not modified since 2025-08-18 (6 months)."
+    },
+    {
+      "name": "PW_TEST_CDN_THAT_SHOULD_WORK",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/registry/index.ts:50",
+        "packages/playwright-core/src/server/registry/index.ts:53"
+      ],
+      "last_modified": "2022-06-20",
+      "suggested_action": "Remove test-only CDN override; use proper test configuration or mocking",
+      "evidence": "Test-only CDN validation override. 2 references in registry/index.ts. Not modified since 2022-06-20 (3.7 years)."
+    },
+    {
+      "name": "PW_TEST_HTML_REPORT_OPEN",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": ["packages/playwright/src/reporters/html.ts:196"],
+      "last_modified": "2024-05-21",
+      "suggested_action": "Remove backwards-compat alias; use PLAYWRIGHT_HTML_OPEN exclusively",
+      "evidence": "Backwards-compat alias for PLAYWRIGHT_HTML_OPEN. Single usage with comment noting it is for backwards compatibility. Not modified since 2024-05-21 (21 months)."
+    },
+    {
+      "name": "WK_DISABLE_FRAME_SESSIONS",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "MEDIUM",
+      "files": ["packages/playwright-core/src/server/webkit/wkPage.ts:50"],
+      "last_modified": "2026-01-14",
+      "suggested_action": "Keep as-is; recently added gate for WebKit frame sessions within revision range 2245-2255",
+      "evidence": "Controls WebKit frame sessions for specific revisions (2245-2255). Recently added 2026-01-14. Single usage gating feature behavior."
+    },
+    {
+      "name": "PWPAUSE",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": ["packages/playwright/src/program.ts:318"],
+      "last_modified": "2026-01-22",
+      "suggested_action": "Keep as-is; active debug/testing convenience flag",
+      "evidence": "Sets pause mode when running tests. Recently modified 2026-01-22. Single usage in program.ts."
     }
   ],
   "summary": {
-    "total_flags": 27,
-    "removal_candidates": 20,
+    "total_flags": 33,
+    "removal_candidates": 24,
     "breakdown": {
-      "STALE": 20,
-      "ACTIVE": 7
+      "STALE": 24,
+      "ACTIVE": 9
     }
   },
   "scan_metadata": {
-    "scan_date": "2026-02-17",
+    "scan_date": "2026-02-19",
     "stale_threshold_days": 90,
     "repository": "nick-gu/playwrightForkForDemo",
     "scan_scope": "packages/ directory (excluding test assets and browser patches)",
-    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags."
+    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags. PWTEST_* internal test infrastructure flags (e.g. PWTEST_BOT_NAME, PWTEST_BLOB_DO_NOT_REMOVE, PWTEST_CLI_HEADLESS, etc.) were excluded as they are test harness controls, not feature flags. Dates verified using git log -S for accurate flag-specific modification tracking."
   }
 }
