@@ -5,17 +5,21 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/chromium/crBrowser.ts:181"],
+      "files": [
+        "packages/playwright-core/src/server/chromium/crBrowser.ts:181"
+      ],
       "last_modified": "2022-06-15",
-      "suggested_action": "Remove env check and always detach 'other' target types, unless extension mode is desired",
-      "evidence": "Single usage, not modified since 2022-06-15 (3.7 years). Treats CDP 'other' targets as pages when set."
+      "suggested_action": "Remove env check and always detach other target types, unless extension mode is desired",
+      "evidence": "Single usage, not modified since 2022-06-15 (3.7 years). Treats CDP other targets as pages when set."
     },
     {
       "name": "PW_EXTENSION_MODE",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:305"],
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:305"
+      ],
       "last_modified": "2023-05-23",
       "suggested_action": "Remove env var check; rely solely on --mode CLI flag which provides the same functionality",
       "evidence": "Single usage, redundant with --mode=extension CLI option. Not modified since 2023-05-23 (2.7 years)."
@@ -38,17 +42,25 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright/src/runner/reporters.ts:66"],
+      "files": [
+        "packages/playwright/src/runner/reporters.ts:66",
+        "packages/playwright/src/runner/reporters.ts:67"
+      ],
       "last_modified": "2023-01-26",
       "suggested_action": "Remove env var override; use standard --reporter CLI flag or config instead",
-      "evidence": "Internal test-only reporter override. Not modified since 2023-01-26 (3 years). 2 references in src."
+      "evidence": "Internal test-only reporter override. Not modified since 2023-01-26 (3 years)."
     },
     {
       "name": "PW_TEST_SOURCE_TRANSFORM",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "MEDIUM",
-      "files": ["packages/playwright/src/transform/transform.ts:234"],
+      "files": [
+        "packages/playwright/src/transform/transform.ts:234",
+        "packages/playwright/src/transform/transform.ts:235",
+        "packages/playwright/src/transform/transform.ts:236",
+        "packages/playwright/src/transform/transform.ts:238"
+      ],
       "last_modified": "2023-05-11",
       "suggested_action": "Remove env-based source transform; use standard plugin configuration instead",
       "evidence": "Used with PW_TEST_SOURCE_TRANSFORM_SCOPE for test-only source transforms. Not modified since 2023-05-11 (2.7 years). 4 references in transform.ts."
@@ -58,7 +70,9 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/utils/userAgent.ts:80"],
+      "files": [
+        "packages/playwright-core/src/server/utils/userAgent.ts:80"
+      ],
       "last_modified": "2023-10-13",
       "suggested_action": "Remove override; always use actual package.json version",
       "evidence": "Single usage, overrides version in user agent string. Not modified since 2023-10-13 (2.3 years)."
@@ -68,7 +82,9 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/screenshotter.ts:259"],
+      "files": [
+        "packages/playwright-core/src/server/screenshotter.ts:259"
+      ],
       "last_modified": "2023-11-17",
       "suggested_action": "Remove env check; always wait for fonts ready before screenshots",
       "evidence": "Single usage, skips fonts-ready wait when set. Test-only flag, not modified since 2023-11-17 (2.3 years)."
@@ -78,7 +94,11 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "MEDIUM",
-      "files": ["packages/playwright/src/index.ts:576"],
+      "files": [
+        "packages/playwright/src/index.ts:576",
+        "packages/playwright/src/index.ts:579",
+        "packages/playwright/src/index.ts:583"
+      ],
       "last_modified": "2024-02-20",
       "suggested_action": "Remove env-based connection; use connectOptions fixture config instead",
       "evidence": "Used with PW_TEST_CONNECT_HEADERS and PW_TEST_CONNECT_EXPOSE_NETWORK for remote browser connection in tests. Not modified since 2024-02-20 (2 years)."
@@ -88,20 +108,25 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright/src/index.ts:421"],
+      "files": [
+        "packages/playwright/src/index.ts:421"
+      ],
       "last_modified": "2024-05-15",
       "suggested_action": "Remove env override; use _optionContextReuseMode fixture option directly",
-      "evidence": "Single usage, forces context reuse mode to 'when-possible'. Not modified since 2024-05-15 (21 months)."
+      "evidence": "Single usage, forces context reuse mode. Not modified since 2024-05-15 (21 months)."
     },
     {
       "name": "PW_CLOCK",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "MEDIUM",
-      "files": ["packages/playwright/src/index.ts:370"],
+      "files": [
+        "packages/playwright/src/index.ts:370",
+        "packages/playwright/src/index.ts:375"
+      ],
       "last_modified": "2024-06-28",
       "suggested_action": "Remove env-based clock override; use clock fixture configuration instead",
-      "evidence": "Controls clock behavior (frozen/realtime) via env var. Referenced extensively in test files. Not modified since 2024-06-28 (20 months)."
+      "evidence": "Controls clock behavior (frozen/realtime) via env var. Not modified since 2024-06-28 (20 months)."
     },
     {
       "name": "PLAYWRIGHT_DISABLE_FORCED_CHROMIUM_PROXIED_LOOPBACK",
@@ -116,7 +141,7 @@
       ],
       "last_modified": "2024-09-05",
       "suggested_action": "Remove flag and always apply loopback proxy bypass, or make it a proper config option",
-      "evidence": "Disables forced <-loopback> proxy bypass across 4 files in chromium/bidi/android. Not modified since 2024-09-05 (17 months)."
+      "evidence": "Disables forced <-loopback> proxy bypass across 4 files. Not modified since 2024-09-05 (17 months)."
     },
     {
       "name": "PW_LANG_NAME",
@@ -125,13 +150,16 @@
       "risk_level": "HIGH",
       "files": [
         "packages/playwright-core/src/cli/program.ts:47",
+        "packages/playwright-core/src/cli/program.ts:195",
+        "packages/playwright-core/src/cli/program.ts:702",
+        "packages/playwright-core/src/cli/programWithTestStub.ts:69",
         "packages/playwright-core/src/cli/driver.ts:45",
         "packages/playwright-core/src/inProcessFactory.ts:27",
-        "packages/playwright-core/src/cli/program.ts:702"
+        "packages/playwright-core/src/server/utils/userAgent.ts:69"
       ],
       "last_modified": "2024-01-29",
       "suggested_action": "Keep as-is; core to multi-language SDK support (Python, Java, .NET bindings)",
-      "evidence": "Used across multiple files for language binding selection. Core to Playwright's multi-language architecture."
+      "evidence": "Used across 7+ locations for language binding selection. Core to multi-language architecture."
     },
     {
       "name": "PWDEBUG",
@@ -143,9 +171,9 @@
         "packages/playwright/src/program.ts:338",
         "packages/playwright-core/src/server/browserType.ts:296"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; core debugging mechanism documented in Playwright docs",
-      "evidence": "Core debug mode flag (console/inspector). Widely used across codebase via debugMode() helper. Documented user-facing feature."
+      "evidence": "Core debug mode flag (console/inspector). Widely used via debugMode() helper. Recently modified 2026-02-12."
     },
     {
       "name": "PWTEST_UNDER_TEST",
@@ -157,18 +185,20 @@
         "packages/injected/src/injectedScript.ts:131",
         "packages/playwright-core/src/server/trace/viewer/traceViewer.ts:132"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2023-03-12",
       "suggested_action": "Keep as-is; core test infrastructure used in dozens of locations via isUnderTest()",
-      "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper to adjust behavior during Playwright's own tests."
+      "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper."
     },
     {
       "name": "PW_DISABLE_TS_ESM",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright/src/common/esmLoaderHost.ts:27"],
+      "files": [
+        "packages/playwright/src/common/esmLoaderHost.ts:27"
+      ],
       "last_modified": "2025-04-25",
-      "suggested_action": "Remove opt-out switch if ESM loader is stable; keep only if users still need escape hatch",
+      "suggested_action": "Remove opt-out switch if ESM loader is stable",
       "evidence": "Single usage opt-out switch for ESM loader registration. Not modified since 2025-04-25 (10 months)."
     },
     {
@@ -176,7 +206,9 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright/src/index.ts:724"],
+      "files": [
+        "packages/playwright/src/index.ts:724"
+      ],
       "last_modified": "2025-05-28",
       "suggested_action": "Remove env check; make page snapshot behavior unconditional or configurable via API",
       "evidence": "Single usage, disables page snapshot capture on test failure. Not modified since 2025-05-28 (9 months)."
@@ -186,10 +218,16 @@
       "removal_candidate": false,
       "reason": "ACTIVE",
       "risk_level": "MEDIUM",
-      "files": ["packages/playwright/src/reporters/base.ts:83"],
+      "files": [
+        "packages/playwright/src/reporters/base.ts:83",
+        "packages/playwright/src/reporters/base.ts:87",
+        "packages/playwright/src/reporters/base.ts:91",
+        "packages/playwright/src/reporters/base.ts:93",
+        "packages/playwright/src/reporters/base.ts:98"
+      ],
       "last_modified": "2025-06-16",
       "suggested_action": "Keep as-is; user-facing documented configuration option for CI environments",
-      "evidence": "User-facing config for forcing TTY output mode in reporters. Documented in Playwright docs. Used for CI output formatting."
+      "evidence": "User-facing config for forcing TTY output mode in reporters. Documented in Playwright docs."
     },
     {
       "name": "PW_DEBUG_CONTROLLER_HEADLESS",
@@ -209,17 +247,22 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/recorder/recorderApp.ts:179"],
+      "files": [
+        "packages/playwright-core/src/server/recorder/recorderApp.ts:179",
+        "packages/playwright-core/src/server/recorder/recorderApp.ts:195"
+      ],
       "last_modified": "2025-07-03",
       "suggested_action": "Remove env check; use explicit API parameter to control inspector visibility in codegen",
-      "evidence": "Disables inspector in codegen recorder. 2 references in recorderApp.ts. Not modified since 2025-07-03 (7.5 months)."
+      "evidence": "Disables inspector in codegen recorder. 2 references. Not modified since 2025-07-03 (7.5 months)."
     },
     {
       "name": "PLAYWRIGHT_SKIP_BROWSER_GC",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:218"],
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:218"
+      ],
       "last_modified": "2025-09-09",
       "suggested_action": "Remove flag; either always GC or make it a proper CLI option",
       "evidence": "Skips browser garbage collection. Single usage. Not modified since 2025-09-09 (5 months)."
@@ -229,17 +272,21 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/chromium/chromiumSwitches.ts:65"],
+      "files": [
+        "packages/playwright-core/src/server/chromium/chromiumSwitches.ts:65"
+      ],
       "last_modified": "2025-09-24",
       "suggested_action": "Remove flag and always use CDPScreenshotNewSurface; legacy path is no longer needed",
-      "evidence": "Single usage, gates CDPScreenshotNewSurface Chromium feature flag. When set, disables the new screenshot surface. Not modified since 2025-09-24 (5 months)."
+      "evidence": "Single usage, gates CDPScreenshotNewSurface Chromium feature flag. Not modified since 2025-09-24 (5 months)."
     },
     {
       "name": "PLAYWRIGHT_DISABLE_SERVICE_WORKER_NETWORK",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/chromium/crServiceWorker.ts:36"],
+      "files": [
+        "packages/playwright-core/src/server/chromium/crServiceWorker.ts:36"
+      ],
       "last_modified": "2025-10-15",
       "suggested_action": "Remove flag; make service worker network interception unconditional or configurable via API",
       "evidence": "Single usage, disables service worker network interception. Not modified since 2025-10-15 (4 months)."
@@ -249,20 +296,24 @@
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "MEDIUM",
-      "files": ["packages/playwright-core/src/server/page.ts:517"],
+      "files": [
+        "packages/playwright-core/src/server/page.ts:517"
+      ],
       "last_modified": "2025-11-18",
       "suggested_action": "Remove flag; always perform navigation check or fix underlying issue",
-      "evidence": "Single usage, skips navigation validation check. Not modified since 2025-11-18 (91 days). Affects page navigation behavior."
+      "evidence": "Single usage, skips navigation validation check. Not modified since 2025-11-18 (93 days)."
     },
     {
       "name": "PLAYWRIGHT_DISABLE_SERVICE_WORKER_CONSOLE",
       "removal_candidate": true,
       "reason": "STALE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/chromium/crServiceWorker.ts:55"],
+      "files": [
+        "packages/playwright-core/src/server/chromium/crServiceWorker.ts:55"
+      ],
       "last_modified": "2025-11-18",
       "suggested_action": "Remove flag; make service worker console forwarding unconditional or configurable via API",
-      "evidence": "Single usage, disables service worker console message forwarding. Not modified since 2025-11-18 (91 days)."
+      "evidence": "Single usage, disables service worker console message forwarding. Not modified since 2025-11-18 (93 days)."
     },
     {
       "name": "PW_TEST_DEBUG_REPORTERS",
@@ -271,22 +322,33 @@
       "risk_level": "LOW",
       "files": [
         "packages/playwright/src/reporters/line.ts:50",
+        "packages/playwright/src/reporters/line.ts:83",
+        "packages/playwright/src/reporters/line.ts:86",
+        "packages/playwright/src/reporters/line.ts:107",
+        "packages/playwright/src/reporters/line.ts:119",
+        "packages/playwright/src/reporters/line.ts:129",
+        "packages/playwright/src/reporters/line.ts:136",
         "packages/playwright/src/reporters/list.ts:171",
+        "packages/playwright/src/reporters/list.ts:242",
+        "packages/playwright/src/reporters/list.ts:254",
         "packages/playwright/src/reporters/dot.ts:71"
       ],
       "last_modified": "2026-01-22",
       "suggested_action": "Keep as-is; actively used debug flag for reporter development",
-      "evidence": "Debug flag for reporter output. Recently modified 2026-01-22. Used across line, list, and dot reporters."
+      "evidence": "Debug flag for reporter output. Recently modified 2026-01-22. Used in 11 locations."
     },
     {
       "name": "PW_CLI_DISPLAY_VERSION",
       "removal_candidate": false,
       "reason": "ACTIVE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:46"],
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:46",
+        "packages/playwright-core/src/server/registry/dependencies.ts:31"
+      ],
       "last_modified": "2026-01-20",
       "suggested_action": "Keep as-is; actively used for CLI version display override",
-      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Single usage."
+      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Used in 2 locations."
     },
     {
       "name": "PWDEBUGIMPL",
@@ -295,27 +357,269 @@
       "risk_level": "LOW",
       "files": [
         "packages/playwright/src/util.ts:37",
+        "packages/playwright/src/util.ts:49",
+        "packages/playwright/src/util.ts:51",
+        "packages/playwright/src/util.ts:59",
+        "packages/playwright/src/cli/daemon/program.ts:54",
+        "packages/playwright/src/cli/daemon/daemon.ts:122",
+        "packages/playwright/src/reporters/base.ts:616",
         "packages/playwright-core/src/server/utils/nodePlatform.ts:73",
+        "packages/playwright-core/src/server/utils/nodePlatform.ts:115",
         "packages/playwright-core/src/cli/program.ts:694"
       ],
       "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; actively used implementation debug flag",
-      "evidence": "Shows internal stack frames and detailed error info for Playwright developers. Recently modified 2026-02-12."
+      "evidence": "Shows internal stack frames and detailed error info. Recently modified 2026-02-12. Used in 10 locations."
+    },
+    {
+      "name": "PWTEST_FORCE_EXIT_TIMEOUT",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/common/process.ts:99"
+      ],
+      "last_modified": "2024-05-15",
+      "suggested_action": "Remove env override; hardcode default timeout or make it a proper config option",
+      "evidence": "Single usage, overrides force exit timeout (default 30000ms). Not modified since 2024-05-15 (21 months)."
+    },
+    {
+      "name": "PWTEST_BLOB_DO_NOT_REMOVE",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/reporters/blob.ts:112"
+      ],
+      "last_modified": "2023-07-28",
+      "suggested_action": "Remove env check; always clean up blob files or make it a proper reporter option",
+      "evidence": "Single usage, prevents blob file removal. Test-only flag. Not modified since 2023-07-28 (2.6 years)."
+    },
+    {
+      "name": "PWTEST_WATCH",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/program.ts:245"
+      ],
+      "last_modified": "2023-03-24",
+      "suggested_action": "Remove env check; use --watch CLI flag instead",
+      "evidence": "Single usage, enables watch mode via env var. Not modified since 2023-03-24 (2.9 years). Redundant with CLI flag."
+    },
+    {
+      "name": "PWTEST_DEBUG",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/runner/testServer.ts:237"
+      ],
+      "last_modified": "2025-08-29",
+      "suggested_action": "Remove env check; use standard PWDEBUG or DEBUG mechanism instead",
+      "evidence": "Single usage in test server debug logging. Not modified since 2025-08-29 (6 months)."
+    },
+    {
+      "name": "PWTEST_HEADED_FOR_TEST",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/runner/testServer.ts:282"
+      ],
+      "last_modified": "2024-03-22",
+      "suggested_action": "Remove env check; use headless fixture option or standard --headed flag",
+      "evidence": "Single usage, forces headed mode in test server. Not modified since 2024-03-22 (23 months)."
+    },
+    {
+      "name": "PWTEST_CACHE_DIR",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/transform/compilationCache.ts:52"
+      ],
+      "last_modified": "2023-02-02",
+      "suggested_action": "Remove env override; use standard cache directory configuration",
+      "evidence": "Single usage, overrides compilation cache directory. Not modified since 2023-02-02 (3 years)."
+    },
+    {
+      "name": "PWTEST_PROFILE_DIR",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/utils/profiler.ts:20"
+      ],
+      "last_modified": "2021-10-11",
+      "suggested_action": "Remove env check; use standard profiling tools or make it a proper config option",
+      "evidence": "Single usage, sets profiling output directory. Not modified since 2021-10-11 (4.4 years). Oldest stale flag found."
+    },
+    {
+      "name": "PWTEST_PRINT_WS_ENDPOINT",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/trace/viewer/traceViewer.ts:190"
+      ],
+      "last_modified": "2023-03-17",
+      "suggested_action": "Remove env check; use standard output mechanism for WebSocket endpoint",
+      "evidence": "Single usage, prints WebSocket endpoint in trace viewer. Not modified since 2023-03-17 (2.9 years)."
+    },
+    {
+      "name": "PWTEST_CLI_HEADLESS",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/recorder/recorderApp.ts:213",
+        "packages/playwright-core/src/cli/program.ts:554",
+        "packages/playwright-core/src/cli/program.ts:563"
+      ],
+      "last_modified": "2023-04-25",
+      "suggested_action": "Remove env check; use --headless CLI flag or proper config option",
+      "evidence": "Forces headless mode in CLI tools. 3 references. Not modified since 2023-04-25 (2.8 years)."
+    },
+    {
+      "name": "PWTEST_CLI_EXECUTABLE_PATH",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:554",
+        "packages/playwright-core/src/cli/program.ts:564"
+      ],
+      "last_modified": "2023-04-25",
+      "suggested_action": "Remove env override; use --executable-path CLI flag",
+      "evidence": "Overrides browser executable path in CLI. 2 references. Not modified since 2023-04-25 (2.8 years)."
+    },
+    {
+      "name": "PWTEST_CLI_IS_UNDER_TEST",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:586"
+      ],
+      "last_modified": "2025-08-12",
+      "suggested_action": "Remove env check; consolidate with PWTEST_UNDER_TEST / isUnderTest() mechanism",
+      "evidence": "Single usage, separate under test flag for CLI. Not modified since 2025-08-12 (6 months). Redundant with PWTEST_UNDER_TEST."
+    },
+    {
+      "name": "PWTEST_CLI_EXIT_AFTER_TIMEOUT",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:611",
+        "packages/playwright-core/src/cli/program.ts:612"
+      ],
+      "last_modified": "2025-08-12",
+      "suggested_action": "Remove env check; use proper test timeout mechanisms",
+      "evidence": "Sets auto-exit timeout in CLI. 2 references. Not modified since 2025-08-12 (6 months)."
+    },
+    {
+      "name": "PWTEST_SERVER_WS_HEADERS",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/remote/playwrightServer.ts:84",
+        "packages/playwright-core/src/remote/playwrightServer.ts:85"
+      ],
+      "last_modified": "2023-03-31",
+      "suggested_action": "Remove env check; pass headers through proper server configuration",
+      "evidence": "Injects WebSocket headers in playwright server. 2 references. Not modified since 2023-03-31 (2.9 years)."
+    },
+    {
+      "name": "PW_TEST_HTML_REPORT_OPEN",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/reporters/html.ts:196"
+      ],
+      "last_modified": "2024-05-21",
+      "suggested_action": "Remove env var; use PLAYWRIGHT_HTML_OPEN which provides the same functionality",
+      "evidence": "Single usage, alternative to PLAYWRIGHT_HTML_OPEN. Not modified since 2024-05-21 (21 months). Redundant."
+    },
+    {
+      "name": "PW_TEST_CDN_THAT_SHOULD_WORK",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/registry/index.ts:50",
+        "packages/playwright-core/src/server/registry/index.ts:53"
+      ],
+      "last_modified": "2022-06-20",
+      "suggested_action": "Remove test-only CDN override; use proper test mocking for CDN validation",
+      "evidence": "Test-only flag to override CDN validation. 2 references. Not modified since 2022-06-20 (3.7 years)."
+    },
+    {
+      "name": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": [
+        "packages/playwright-core/src/server/utils/hostPlatform.ts:41",
+        "packages/playwright-core/src/server/utils/hostPlatform.ts:43"
+      ],
+      "last_modified": "2024-11-04",
+      "suggested_action": "Remove env override; use proper platform detection or make it a documented config option",
+      "evidence": "Overrides host platform detection. 2 references. Not modified since 2024-11-04 (15 months). Affects browser binary selection."
+    },
+    {
+      "name": "PLAYWRIGHT_PROXY_BYPASS_FOR_TESTING",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright-core/src/server/bidi/bidiBrowser.ts:555"
+      ],
+      "last_modified": "2025-08-18",
+      "suggested_action": "Remove test-only proxy bypass; use proper proxy configuration in tests",
+      "evidence": "Single usage, overrides proxy bypass settings in BiDi browser. Not modified since 2025-08-18 (6 months)."
+    },
+    {
+      "name": "PWTEST_BOT_NAME",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/reporters/blob.ts:56"
+      ],
+      "last_modified": "2025-12-02",
+      "suggested_action": "Keep as-is; recently modified, used for bot naming in blob reporter",
+      "evidence": "Sets bot name in blob reporter metadata. Recently modified 2025-12-02 (within 90 days)."
+    },
+    {
+      "name": "PWTEST_SHARD_WEIGHTS",
+      "removal_candidate": false,
+      "reason": "ACTIVE",
+      "risk_level": "LOW",
+      "files": [
+        "packages/playwright/src/program.ts:385"
+      ],
+      "last_modified": "2026-01-22",
+      "suggested_action": "Keep as-is; recently modified, used for shard weight distribution",
+      "evidence": "Controls shard weight distribution in test runner. Recently modified 2026-01-22 (within 90 days)."
     }
   ],
   "summary": {
-    "total_flags": 27,
-    "removal_candidates": 20,
+    "total_flags": 46,
+    "removal_candidates": 37,
     "breakdown": {
-      "STALE": 20,
-      "ACTIVE": 7
+      "STALE": 37,
+      "ACTIVE": 9
     }
   },
   "scan_metadata": {
-    "scan_date": "2026-02-17",
+    "scan_date": "2026-02-19",
     "stale_threshold_days": 90,
     "repository": "nick-gu/playwrightForkForDemo",
     "scan_scope": "packages/ directory (excluding test assets and browser patches)",
-    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags."
+    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags. PLAYWRIGHT_TEST_BASE_URL, PLAYWRIGHT_DAEMON_*, and PLAYWRIGHT_CLI_SESSION were excluded as standard infrastructure config. PW_TEST_SOURCE_TRANSFORM_SCOPE, PW_TEST_CONNECT_HEADERS, PW_TEST_CONNECT_EXPOSE_NETWORK, and PW_LANG_NAME_VERSION are companion vars documented under their primary flag entries."
   }
 }
