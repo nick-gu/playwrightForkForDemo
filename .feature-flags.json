@@ -109,6 +109,16 @@
       "evidence": "Disables forced <-loopback> proxy bypass across 4 files in chromium/bidi/android. Not modified since 2024-09-05 (17 months)."
     },
     {
+      "name": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "LOW",
+      "files": ["packages/playwright-core/src/server/utils/hostPlatform.ts:41"],
+      "last_modified": "2024-11-04",
+      "suggested_action": "Remove env override; use standard platform detection or proper config option for cross-platform testing",
+      "evidence": "Single usage, overrides host platform detection. Test/debug only. Not modified since 2024-11-04 (15 months)."
+    },
+    {
       "name": "PW_LANG_NAME",
       "removal_candidate": false,
       "reason": "ACTIVE",
@@ -133,7 +143,7 @@
         "packages/playwright/src/program.ts:338",
         "packages/playwright-core/src/server/browserType.ts:296"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; core debugging mechanism documented in Playwright docs",
       "evidence": "Core debug mode flag (console/inspector). Widely used across codebase via debugMode() helper. Documented user-facing feature."
     },
@@ -147,7 +157,7 @@
         "packages/injected/src/injectedScript.ts:131",
         "packages/playwright-core/src/server/trace/viewer/traceViewer.ts:132"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2025-08-14",
       "suggested_action": "Keep as-is; core test infrastructure used in dozens of locations via isUnderTest()",
       "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper to adjust behavior during Playwright's own tests."
     },
@@ -294,18 +304,18 @@
     }
   ],
   "summary": {
-    "total_flags": 26,
-    "removal_candidates": 19,
+    "total_flags": 27,
+    "removal_candidates": 20,
     "breakdown": {
-      "STALE": 19,
+      "STALE": 20,
       "ACTIVE": 7
     }
   },
   "scan_metadata": {
-    "scan_date": "2026-02-17",
+    "scan_date": "2026-02-20",
     "stale_threshold_days": 90,
     "repository": "nick-gu/playwrightForkForDemo",
     "scan_scope": "packages/ directory (excluding test assets and browser patches)",
-    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags."
+    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags. Since last scan (2026-02-17): PW_CHROMIUM_ATTACH_TO_OTHER was successfully removed (PR #4 merged). New flag discovered: PLAYWRIGHT_HOST_PLATFORM_OVERRIDE. Updated last_modified dates for PWDEBUG (2026-02-12) and PWTEST_UNDER_TEST (2025-08-14)."
   }
 }
