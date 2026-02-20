@@ -1,16 +1,6 @@
 {
   "flags": [
     {
-      "name": "PW_CHROMIUM_ATTACH_TO_OTHER",
-      "removal_candidate": true,
-      "reason": "STALE",
-      "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/server/chromium/crBrowser.ts:181"],
-      "last_modified": "2022-06-15",
-      "suggested_action": "Remove env check and always detach 'other' target types, unless extension mode is desired",
-      "evidence": "Single usage, not modified since 2022-06-15 (3.7 years). Treats CDP 'other' targets as pages when set."
-    },
-    {
       "name": "PW_EXTENSION_MODE",
       "removal_candidate": true,
       "reason": "STALE",
@@ -304,10 +294,10 @@
     }
   ],
   "summary": {
-    "total_flags": 27,
-    "removal_candidates": 20,
+    "total_flags": 26,
+    "removal_candidates": 19,
     "breakdown": {
-      "STALE": 20,
+      "STALE": 19,
       "ACTIVE": 7
     }
   },

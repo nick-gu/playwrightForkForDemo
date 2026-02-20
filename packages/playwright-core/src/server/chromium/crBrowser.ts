@@ -178,9 +178,7 @@ export class CRBrowser extends Browser {
       return;
     }
 
-    const treatOtherAsPage = targetInfo.type === 'other' && process.env.PW_CHROMIUM_ATTACH_TO_OTHER;
-
-    if (!context || (targetInfo.type === 'other' && !treatOtherAsPage)) {
+    if (!context || targetInfo.type === 'other') {
       session.detach().catch(() => {});
       return;
     }
@@ -188,7 +186,7 @@ export class CRBrowser extends Browser {
     assert(!this._crPages.has(targetInfo.targetId), 'Duplicate target ' + targetInfo.targetId);
     assert(!this._serviceWorkers.has(targetInfo.targetId), 'Duplicate target ' + targetInfo.targetId);
 
-    if (targetInfo.type === 'page' || treatOtherAsPage) {
+    if (targetInfo.type === 'page') {
       const opener = targetInfo.openerId ? this._crPages.get(targetInfo.openerId) || null : null;
       const crPage = new CRPage(session, targetInfo.targetId, context, opener, { hasUIWindow: targetInfo.type === 'page' });
       this._crPages.set(targetInfo.targetId, crPage);
