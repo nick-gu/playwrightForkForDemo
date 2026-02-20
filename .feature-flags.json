@@ -1,16 +1,6 @@
 {
   "flags": [
     {
-      "name": "PW_EXTENSION_MODE",
-      "removal_candidate": true,
-      "reason": "STALE",
-      "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:305"],
-      "last_modified": "2023-05-23",
-      "suggested_action": "Remove env var check; rely solely on --mode CLI flag which provides the same functionality",
-      "evidence": "Single usage, redundant with --mode=extension CLI option. Not modified since 2023-05-23 (2.7 years)."
-    },
-    {
       "name": "PW_RUNNER_DEBUG",
       "removal_candidate": true,
       "reason": "STALE",
@@ -294,10 +284,10 @@
     }
   ],
   "summary": {
-    "total_flags": 26,
-    "removal_candidates": 19,
+    "total_flags": 25,
+    "removal_candidates": 18,
     "breakdown": {
-      "STALE": 19,
+      "STALE": 18,
       "ACTIVE": 7
     }
   },
