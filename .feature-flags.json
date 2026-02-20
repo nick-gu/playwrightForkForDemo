@@ -119,6 +119,16 @@
       "evidence": "Disables forced <-loopback> proxy bypass across 4 files in chromium/bidi/android. Not modified since 2024-09-05 (17 months)."
     },
     {
+      "name": "PLAYWRIGHT_HOST_PLATFORM_OVERRIDE",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": ["packages/playwright-core/src/server/utils/hostPlatform.ts:41"],
+      "last_modified": "2024-11-04",
+      "suggested_action": "Remove env override; use proper config option or make platform detection reliable without overrides",
+      "evidence": "Single usage, overrides host platform detection. Not modified since 2024-11-04 (15 months). Affects browser binary selection."
+    },
+    {
       "name": "PW_LANG_NAME",
       "removal_candidate": false,
       "reason": "ACTIVE",
@@ -143,9 +153,9 @@
         "packages/playwright/src/program.ts:338",
         "packages/playwright-core/src/server/browserType.ts:296"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; core debugging mechanism documented in Playwright docs",
-      "evidence": "Core debug mode flag (console/inspector). Widely used across codebase via debugMode() helper. Documented user-facing feature."
+      "evidence": "Core debug mode flag (console/inspector). Widely used across codebase via debugMode() helper. Documented user-facing feature. Last touched in daemon/client split (#39245)."
     },
     {
       "name": "PWTEST_UNDER_TEST",
@@ -157,9 +167,9 @@
         "packages/injected/src/injectedScript.ts:131",
         "packages/playwright-core/src/server/trace/viewer/traceViewer.ts:132"
       ],
-      "last_modified": "2025-02-14",
+      "last_modified": "2025-04-30",
       "suggested_action": "Keep as-is; core test infrastructure used in dozens of locations via isUnderTest()",
-      "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper to adjust behavior during Playwright's own tests."
+      "evidence": "Core testing infrastructure flag. Used in 30+ locations via isUnderTest() helper to adjust behavior during Playwright own tests. setUnderTest removed in #35810."
     },
     {
       "name": "PW_DISABLE_TS_ESM",
@@ -213,6 +223,16 @@
       "last_modified": "2025-07-03",
       "suggested_action": "Remove env check; use explicit API parameter to control inspector visibility in codegen",
       "evidence": "Disables inspector in codegen recorder. 2 references in recorderApp.ts. Not modified since 2025-07-03 (7.5 months)."
+    },
+    {
+      "name": "PLAYWRIGHT_PROXY_BYPASS_FOR_TESTING",
+      "removal_candidate": true,
+      "reason": "STALE",
+      "risk_level": "MEDIUM",
+      "files": ["packages/playwright-core/src/server/bidi/bidiBrowser.ts:555"],
+      "last_modified": "2025-08-18",
+      "suggested_action": "Remove test-only proxy bypass env var; use proper proxy configuration via API options",
+      "evidence": "Single usage, provides fallback proxy bypass for testing. Not modified since 2025-08-18 (6 months). Only used in bidi browser."
     },
     {
       "name": "PLAYWRIGHT_SKIP_BROWSER_GC",
@@ -283,10 +303,13 @@
       "removal_candidate": false,
       "reason": "ACTIVE",
       "risk_level": "LOW",
-      "files": ["packages/playwright-core/src/cli/program.ts:46"],
+      "files": [
+        "packages/playwright-core/src/cli/program.ts:46",
+        "packages/playwright-core/src/server/registry/dependencies.ts:31"
+      ],
       "last_modified": "2026-01-20",
       "suggested_action": "Keep as-is; actively used for CLI version display override",
-      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Single usage."
+      "evidence": "Overrides displayed CLI version. Recently modified 2026-01-20. Used in program.ts and dependencies.ts."
     },
     {
       "name": "PWDEBUGIMPL",
@@ -296,7 +319,9 @@
       "files": [
         "packages/playwright/src/util.ts:37",
         "packages/playwright-core/src/server/utils/nodePlatform.ts:73",
-        "packages/playwright-core/src/cli/program.ts:694"
+        "packages/playwright-core/src/cli/program.ts:694",
+        "packages/playwright/src/cli/daemon/daemon.ts:122",
+        "packages/playwright/src/cli/daemon/program.ts:54"
       ],
       "last_modified": "2026-02-12",
       "suggested_action": "Keep as-is; actively used implementation debug flag",
@@ -304,18 +329,18 @@
     }
   ],
   "summary": {
-    "total_flags": 27,
-    "removal_candidates": 20,
+    "total_flags": 29,
+    "removal_candidates": 22,
     "breakdown": {
-      "STALE": 20,
+      "STALE": 22,
       "ACTIVE": 7
     }
   },
   "scan_metadata": {
-    "scan_date": "2026-02-17",
+    "scan_date": "2026-02-20",
     "stale_threshold_days": 90,
     "repository": "nick-gu/playwrightForkForDemo",
     "scan_scope": "packages/ directory (excluding test assets and browser patches)",
-    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags."
+    "notes": "Flags are environment variables acting as feature gates in the Playwright source code. PLAYWRIGHT_MCP_* and PLAYWRIGHT_HTML_* configuration env vars were excluded as they are standard documented config options, not feature flags. PWTEST_* test-only config values (timeouts, paths, names) excluded as they are not boolean feature gates."
   }
 }
