@@ -302,7 +302,7 @@ program
         host: options.host,
         path: options.path,
         maxConnections: options.maxClients ? +options.maxClients : Infinity,
-        extension: options.mode === 'extension' || !!process.env.PW_EXTENSION_MODE,
+        extension: options.mode === 'extension',
       }).catch(logErrorAndExit);
     });
 
