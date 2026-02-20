@@ -63,7 +63,7 @@ export class ProcessHost extends EventEmitter {
       stdio: [
         'ignore',
         options.onStdOut ? 'pipe' : 'inherit',
-        (options.onStdErr && !process.env.PW_RUNNER_DEBUG) ? 'pipe' : 'inherit',
+        options.onStdErr ? 'pipe' : 'inherit',
         'ipc',
       ],
     });

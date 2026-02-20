@@ -11,19 +11,6 @@
       "evidence": "Single usage, redundant with --mode=extension CLI option. Not modified since 2023-05-23 (2.7 years)."
     },
     {
-      "name": "PW_RUNNER_DEBUG",
-      "removal_candidate": true,
-      "reason": "STALE",
-      "risk_level": "LOW",
-      "files": [
-        "packages/playwright/src/runner/processHost.ts:66",
-        "packages/playwright/src/worker/workerMain.ts:94"
-      ],
-      "last_modified": "2023-01-20",
-      "suggested_action": "Remove env check; always pipe stderr or use standard DEBUG env var instead",
-      "evidence": "Only controls stderr piping in runner/worker. Not modified since 2023-01-20 (3 years)."
-    },
-    {
       "name": "PW_TEST_REPORTER",
       "removal_candidate": true,
       "reason": "STALE",
@@ -294,10 +281,10 @@
     }
   ],
   "summary": {
-    "total_flags": 26,
-    "removal_candidates": 19,
+    "total_flags": 25,
+    "removal_candidates": 18,
     "breakdown": {
-      "STALE": 19,
+      "STALE": 18,
       "ACTIVE": 7
     }
   },

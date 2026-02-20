@@ -91,16 +91,14 @@ export class WorkerMain extends ProcessRunner {
       return true;
     };
 
-    if (!process.env.PW_RUNNER_DEBUG) {
-      // eslint-disable-next-line no-restricted-properties
-      process.stderr.write = (chunk: string | Buffer, cb?: any) => {
-        this.dispatchEvent('stdErr', stdioChunkToParams(chunk));
-        this._currentTest?._tracing.appendStdioToTrace('stderr', chunk);
-        if (typeof cb === 'function')
-          process.nextTick(cb);
-        return true;
-      };
-    }
+    // eslint-disable-next-line no-restricted-properties
+    process.stderr.write = (chunk: string | Buffer, cb?: any) => {
+      this.dispatchEvent('stdErr', stdioChunkToParams(chunk));
+      this._currentTest?._tracing.appendStdioToTrace('stderr', chunk);
+      if (typeof cb === 'function')
+        process.nextTick(cb);
+      return true;
+    };
   }
 
   private _stop(): Promise<void> {
